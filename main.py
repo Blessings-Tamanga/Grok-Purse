@@ -11,7 +11,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 # 1. FASTAPI INITIALIZATION & CONFIG
 # =========================================================
 app = FastAPI(
-    title="MomoPulse API",
+    title="GrokPulse API",
     description="AI-powered Mobile Money Intelligence System",
     version="2.0.0"
 )
@@ -32,7 +32,7 @@ class ParsedTransaction(BaseModel):
 # 3. DATABASE LAYER (Sync, but run in thread pool by FastAPI)
 # =========================================================
 def init_db():
-    conn = sqlite3.connect('momopulse.db')
+    conn = sqlite3.connect('GrokPulse.db')
     c = conn.cursor()
     c.execute('''CREATE TABLE IF NOT EXISTS transactions
                  (id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -66,7 +66,7 @@ def parse_momo_sms(sms_text: str):
     return None
 
 def insert_transaction(user_phone: str, parsed_data: dict):
-    conn = sqlite3.connect('momopulse.db')
+    conn = sqlite3.connect('GrokPulse.db')
     c = conn.cursor()
     c.execute("INSERT INTO transactions (user_phone, amount, tx_type, vendor, timestamp) VALUES (?, ?, ?, ?, datetime('now'))",
               (user_phone, parsed_data['amount'], parsed_data['tx_type'], parsed_data['vendor']))
@@ -75,7 +75,7 @@ def insert_transaction(user_phone: str, parsed_data: dict):
 
 def execute_sql_query(sql: str):
     try:
-        conn = sqlite3.connect('momopulse.db')
+        conn = sqlite3.connect('GrokPulse.db')
         c = conn.cursor()
         c.execute(sql)
         result = c.fetchone()
@@ -177,4 +177,4 @@ def whatsapp_webhook(Body: str = Form(...), From: str = Form(...)):
 
 @app.get("/")
 def home():
-    return {"message": "MomoPulse API is running 🚀", "docs": "/docs"}
+    return {"message": "GrokPulse API is running 🚀", "docs": "/docs"}

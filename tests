@@ -1,0 +1,16 @@
+//ingest_sms(sms is reaching the phone)
+
+{
+  "sms_text": "You have received MK 50,000.00 from John Doe for groceries.",
+  "user_phone": "265888123456"
+}
+
+//result
+"You should see your MK 50,000 transaction sitting safely in the database!"
+
+
+
+whatsapp webhook
+curl -X POST http://localhost:8000/whatsapp_webhook \
+     -d "Body=What is my balance?" \
+     -d "From=whatsapp:+265888123456"
