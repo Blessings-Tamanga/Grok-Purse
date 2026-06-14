@@ -1,5 +1,6 @@
 # GrokPulse
 
+
 GrokPulse is an AI-powered Financial Operating System that lives in the background of your phone.
 Instead of forcing users to download a new app, manually enter receipts, or link bank accounts (which they don't have), GrokPulse passively listens to the transaction alerts they already receive via SMS and WhatsApp.
 It then gives them a conversational WhatsApp bot where they can simply text questions about their money in plain language, and get instant, accurate financial insights.

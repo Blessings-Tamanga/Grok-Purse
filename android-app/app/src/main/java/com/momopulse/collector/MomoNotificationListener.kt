@@ -16,8 +16,8 @@ class MomoNotificationListener : NotificationListenerService() {
     private val scope = CoroutineScope(Dispatchers.IO + Job())
     private val client = OkHttpClient()
 
-    // REPLACE WITH YOUR NGROK OR LIVE SERVER URL
-    private val API_URL = "https://your-ngrok-url.ngrok-free.app/ingest_sms"
+    // REPLACE WITH YOUR ACTUAL NGROK URL (Keep the /ingest_sms at the end)
+    private val API_URL = "ngrok http 80https://a1b2-c3d4-e5f6.ngrok-free.app/"
     private val USER_PHONE = "265888123456" // In production, fetch from local SharedPreferences
 
     override fun onNotificationPosted(sbn: StatusBarNotification) {
@@ -75,7 +75,7 @@ class MomoNotificationListener : NotificationListenerService() {
                 }
             } catch (e: IOException) {
                 Log.e("MomoPulse", "Network error: ${e.message}")
-.            }
+            } // <--- FIXED: Removed the stray dot
         }
     }
 }
